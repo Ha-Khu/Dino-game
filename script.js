@@ -2,8 +2,11 @@ const dino = document.querySelector(".dino");
 
 let dinoMove = 120;
 const speed = 5;
+let dinoBottom = 50;
+let gravity = 2;
 let movingLeft = false;
 let movingRight = false;
+let isJumping = false;
 
 function update(){
   if(movingLeft){
@@ -18,7 +21,24 @@ function update(){
   requestAnimationFrame(update);
 }
 
+function jump(){
+  if(isJumping){
+    dinoBottom += 5;
+    if(dinoBottom >= 150){
+      isJumping = false;
+    }
+  } else if(dinoBottom > 50){
+    dinoBottom -= gravity;
+  }
+
+  dino.style.bottom = dinoBottom + "px";
+
+
+  requestAnimationFrame(jump);
+}
+
 update();
+jump();
 
 document.addEventListener("keydown", (event)=>{
   const key =  event.key
@@ -26,6 +46,8 @@ document.addEventListener("keydown", (event)=>{
     movingLeft = true;
   } else if(key === "ArrowRight"){
     movingRight = true;
+  } else if(key === "ArrowUp" && dinoBottom === 50){
+    isJumping = true;
   }
 });
 
