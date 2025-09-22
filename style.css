@@ -23,6 +23,7 @@
 
 .dino img{
   width: 120px;
+  border: 3px solid red;
 }
 
 .Cloud-1{
@@ -52,10 +53,16 @@
 }
 
 .obstacle{
-  width: 100px;
+  width: 40px;
   height: auto;
+}
+
+.obstacle.building3{
+  transform: scale(1.5);
+  margin-bottom: 15px;
 }
 
 .obstacle.Car {
   transform: scale(2);
+  margin-bottom: 20px;
 }

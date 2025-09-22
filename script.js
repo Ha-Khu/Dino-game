@@ -52,14 +52,17 @@ function spawnObstacles(){
 
   img.src = obstacleImages[Math.floor(Math.random() * obstacleImages.length)];
   img.classList.add("obstacle");
-  if(img.src.includes("Building")){
+  if(img.src.includes("3")){
+    img.classList.add("building");
+    img.classList.add("building3")
+  } else if(img.src.includes("Building")){
     img.classList.add("building");
   } else {
     img.classList.add("Car");
   }
 
   img.style.position = "absolute";
-  const ground = 75;
+  const ground = 45;
   img.style.bottom = ground + "px";
 
   let left = game.clientWidth + 50;
