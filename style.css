@@ -79,3 +79,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.score{
+  position: absolute;
+  left: 45%;
+  top: 3%;
+  width: 300px;
+}

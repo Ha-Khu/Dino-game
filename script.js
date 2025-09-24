@@ -10,6 +10,7 @@ let movingRight = false;
 let isJumping = false;
 let spawnTimeout;
 let gameOver = false;
+let scoreCounter = 1400;
 
 const obstacleImages = [
   "imgs/Building-1.png",
@@ -122,6 +123,28 @@ function collision(aRect, bRect){
     }
 }
 
+function scoreAdd(){
+  const score = document.querySelector(".score");
+  score.textContent = "SCORE: " + scoreCounter;
+
+  scoreInterval = setInterval(()=>{
+    if(!gameOver){
+      scoreCounter++;
+      score.textContent = "SCORE: " + scoreCounter;
+    }
+    
+    if(scoreCounter >= 1500){
+      score.style.color = "white";
+    } else {
+      score.style.color = "black";
+    }
+  }, 100)
+}
+
+function stopScore(){
+  clearInterval(scoreInterval);
+}
+
 function endGame(){
   gameOver = true;
   resetBtn.style.display = "block";
@@ -140,12 +163,15 @@ function resetGame(){
   const obstacles = document.querySelectorAll(".obstacle");
   obstacles.forEach(obs => obs.remove());
 
+  scoreCounter = 0;
+
   startSpawning();
 }
 
 
 update();
 jump();
+scoreAdd();
 startSpawning();
 
 resetBtn.addEventListener("click", resetGame);
