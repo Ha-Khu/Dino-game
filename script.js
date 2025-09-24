@@ -10,7 +10,7 @@ let movingRight = false;
 let isJumping = false;
 let spawnTimeout;
 let gameOver = false;
-let scoreCounter = 1400;
+let scoreCounter = 0;
 
 const obstacleImages = [
   "imgs/Building-1.png",
@@ -76,6 +76,8 @@ function spawnObstacles(){
 
   game.appendChild(img);
 
+  const speed = 5 + Math.floor(scoreCounter / 500);
+
   const timer = setInterval(()=>{
     if(gameOver){
       clearInterval(timer);
@@ -83,7 +85,7 @@ function spawnObstacles(){
       return;
     }
 
-    left -= 5;
+    left -= speed;
     img.style.left = left + "px";
 
     const dinoRect = dino.getBoundingClientRect();
@@ -132,7 +134,7 @@ function scoreAdd(){
       scoreCounter++;
       score.textContent = "SCORE: " + scoreCounter;
     }
-    
+
     if(scoreCounter >= 1500){
       score.style.color = "white";
     } else {
