@@ -126,6 +126,7 @@ function collision(aRect, bRect){
 }
 
 function scoreAdd(){
+  const game = document.getElementById("game");
   const score = document.querySelector(".score");
   score.textContent = "SCORE: " + scoreCounter;
 
@@ -137,10 +138,12 @@ function scoreAdd(){
 
     if(scoreCounter >= 1500){
       score.style.color = "white";
+      game.style.background = "linear-gradient(to bottom, #141e30, #243b55)";
     } else {
       score.style.color = "black";
+      game.style.background = "linear-gradient(to bottom, #f6d365, #fda085)";
     }
-  }, 100)
+  }, 50)
 }
 
 function stopScore(){
